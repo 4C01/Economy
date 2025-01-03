@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.Economy.EconomyMain;
+import me.scruffyboy13.Economy.ArcadesEconomyMain;
 import me.scruffyboy13.Economy.commands.CommandExecutor;
 import me.scruffyboy13.Economy.data.ConfigHandler;
 import me.scruffyboy13.Economy.utils.StringUtils;
@@ -19,7 +19,7 @@ public class MoneyTakeCommand extends CommandExecutor {
 
 	public MoneyTakeCommand() {
 		this.setName("take");
-		this.setPermission("economy.command.take");
+		this.setPermission("arcadeseconomy.command.take");
 		this.setUsage(ConfigHandler.getMessage("money.take.usage"));
 		this.setBoth(true);
 		this.setLengths(Arrays.asList(3));
@@ -29,7 +29,7 @@ public class MoneyTakeCommand extends CommandExecutor {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 
-		List<OfflinePlayer> others = EconomyMain.getPlayersFromString(sender, args[1]);
+		List<OfflinePlayer> others = ArcadesEconomyMain.getPlayersFromString(sender, args[1]);
 		
 		if (others.isEmpty() && !args[1].equals("@a")) {
 			StringUtils.sendConfigMessage(sender, "messages.money.take.otherDoesntExist", ImmutableMap.of(
@@ -39,7 +39,7 @@ public class MoneyTakeCommand extends CommandExecutor {
 		
 		double amount = 0;
 		try {
-			amount = EconomyMain.getAmountFromString(args[2]);
+			amount = ArcadesEconomyMain.getAmountFromString(args[2]);
 		}
 		catch (NumberFormatException e){
 			StringUtils.sendConfigMessage(sender, "messages.money.take.invalidAmount", ImmutableMap.of(
@@ -57,26 +57,26 @@ public class MoneyTakeCommand extends CommandExecutor {
 		
 		for (OfflinePlayer other : others) {
 		
-			if (!EconomyMain.getEco().hasAccount(other.getUniqueId())) {
+			if (!ArcadesEconomyMain.getEco().hasAccount(other.getUniqueId())) {
 				StringUtils.sendConfigMessage(sender, "messages.money.take.otherNoAccount", ImmutableMap.of(
 						"%player%", other.getName()));
 				failed = true;
 				continue;
 			}
 			
-			if (!EconomyMain.getEco().has(other.getUniqueId(), amount)) {
+			if (!ArcadesEconomyMain.getEco().has(other.getUniqueId(), amount)) {
 				StringUtils.sendConfigMessage(sender, "messages.money.take.insufficientFunds", ImmutableMap.of(
 						"%player%", other.getName()));
 				failed = true;
 				continue;
 			}
 			
-			EconomyMain.getEco().withdraw(other.getUniqueId(), amount);
+			ArcadesEconomyMain.getEco().withdraw(other.getUniqueId(), amount);
 			
 			if (other instanceof Player) {
 				if (!(sender instanceof Player && ((Player) sender).equals((Player) other))) {
 					StringUtils.sendConfigMessage((Player) other, "messages.money.take.taken", ImmutableMap.of(
-							"%amount%", EconomyMain.format(amount)));
+							"%amount%", ArcadesEconomyMain.format(amount)));
 				}
 			}
 			
@@ -89,7 +89,7 @@ public class MoneyTakeCommand extends CommandExecutor {
 			if (!failed) {
 			
 				StringUtils.sendConfigMessage(sender, "messages.money.take.take", ImmutableMap.of(
-						"%amount%", EconomyMain.format(amount),
+						"%amount%", ArcadesEconomyMain.format(amount),
 						"%player%", others.get(0).getName()));
 				
 			}
@@ -100,7 +100,7 @@ public class MoneyTakeCommand extends CommandExecutor {
 			
 			StringUtils.sendConfigMessage(sender, "messages.money.take.takeMultiple", ImmutableMap.of(
 					"%total%", total + "",
-					"%amount%", EconomyMain.format(amount)));
+					"%amount%", ArcadesEconomyMain.format(amount)));
 			
 		}
 		

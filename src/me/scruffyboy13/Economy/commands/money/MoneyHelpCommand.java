@@ -14,7 +14,7 @@ public class MoneyHelpCommand extends CommandExecutor {
 
 	public MoneyHelpCommand() {
 		this.setName("help");
-		this.setPermission("economy.command.help");
+		this.setPermission("arcadeseconomy.command.help");
 		this.setUsage(ConfigHandler.getMessage("money.help.usage"));
 		this.setPlayer(true);
 		this.setConsole(false);

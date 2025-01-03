@@ -37,7 +37,7 @@ suffixes:
 
 messages:
 
-  prefix: "&bEconomy &f>>"
+  prefix: "&bArcadesEconomy &f>>"
   nopermission:
       - "%prefix% &4You don't have permissions to do that!"
   playersOnly:

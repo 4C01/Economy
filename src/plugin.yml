@@ -1,5 +1,5 @@
-name: Economy
-main: me.scruffyboy13.Economy.EconomyMain
+name: ArcadesEconomy
+main: me.scruffyboy13.Economy.ArcadesEconomyMain
 version: 2.3
 api-version: 1.13
 author: scruffyboy13
@@ -7,27 +7,29 @@ depend: [Vault]
 load: STARTUP
 
 commands:
-  money:
-    aliases: [economy, eco]
-  balance:
-    aliases: [bal]
-  balancetop:
-    aliases: [baltop]
+  arcadescoin:
+    aliases: [arcadesc]
+  arcadesbalance:
+    aliases: [arcadesbal]
+  arcadesbalancetop:
+    aliases: [arcadesbaltop]
+  arcadespay:
+    aliases: []
 
 permissions:
-  economy.command.balance:
+  arcadeseconomy.command.balance:
     default: true
-  economy.command.balancetop:
+  arcadeseconomy.command.balancetop:
     default: true
-  economy.command.help:
+  arcadeseconomy.command.help:
     default: true
-  economy.command.pay:
-    default: true
-  economy.command.give:
+  arcadeseconomy.command.pay:
     default: op
-  economy.command.take:
+  arcadeseconomy.command.give:
     default: op
-  economy.command.set:
+  arcadeseconomy.command.take:
     default: op
-  economy.command.reload:
+  arcadeseconomy.command.set:
+    default: op
+  arcadeseconomy.command.reload:
     default: op

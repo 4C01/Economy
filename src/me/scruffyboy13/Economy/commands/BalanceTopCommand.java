@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.Economy.EconomyMain;
+import me.scruffyboy13.Economy.ArcadesEconomyMain;
 import me.scruffyboy13.Economy.eco.PlayerBalance;
 import me.scruffyboy13.Economy.utils.StringUtils;
 
@@ -19,11 +19,11 @@ public class BalanceTopCommand implements org.bukkit.command.CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-		if (sender.hasPermission("economy.command.balancetop")) {
+		if (sender.hasPermission("arcadeseconomy.command.balancetop")) {
 			
 			if (args.length < 2) {
 				
-				if (EconomyMain.getBalanceTopRunnable().getBalanceTop().isEmpty()) {
+				if (ArcadesEconomyMain.getBalanceTopRunnable().getBalanceTop().isEmpty()) {
 					StringUtils.sendConfigMessage(sender, "messages.top.noAccounts");
 					return true;
 				}
@@ -45,7 +45,7 @@ public class BalanceTopCommand implements org.bukkit.command.CommandExecutor {
 					return true;
 				}
 				
-				List<PlayerBalance> playerBalances = EconomyMain.getBalanceTopRunnable().getBalanceTop();
+				List<PlayerBalance> playerBalances = ArcadesEconomyMain.getBalanceTopRunnable().getBalanceTop();
 				
 				int i = top*10;
 				int j = 0;
@@ -57,7 +57,7 @@ public class BalanceTopCommand implements org.bukkit.command.CommandExecutor {
 							StringUtils.sendConfigMessage(sender, "messages.top.message", ImmutableMap.of(
 									"%rank%", i+1-j + "",
 									"%player%", player.getName(),
-									"%balance%", EconomyMain.format(playerBalance.getBalance()) +  ""
+									"%balance%", ArcadesEconomyMain.format(playerBalance.getBalance()) +  ""
 									));
 						}
 						else {
@@ -75,7 +75,7 @@ public class BalanceTopCommand implements org.bukkit.command.CommandExecutor {
 				
 				if (sender instanceof Player) {
 					Player player = (Player) sender;
-					if (EconomyMain.getEco().hasAccount(player.getUniqueId())) {
+					if (ArcadesEconomyMain.getEco().hasAccount(player.getUniqueId())) {
 						PlayerBalance playerBalance = null;
 						int playerIndex = -1;
 						for (PlayerBalance pb : playerBalances) {
@@ -89,7 +89,7 @@ public class BalanceTopCommand implements org.bukkit.command.CommandExecutor {
 								StringUtils.sendConfigMessage(sender, "messages.top.self", ImmutableMap.of(
 										"%rank%", playerIndex + "",
 										"%player%", player.getName(),
-										"%balance%", EconomyMain.format(playerBalance.getBalance()) +  ""
+										"%balance%", ArcadesEconomyMain.format(playerBalance.getBalance()) +  ""
 										));
 							}
 						}

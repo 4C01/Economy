@@ -10,7 +10,7 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import me.scruffyboy13.Economy.EconomyMain;
+import me.scruffyboy13.Economy.ArcadesEconomyMain;
 
 public class YamlData {
 	
@@ -29,7 +29,7 @@ public class YamlData {
 		if (configFile == null)
 			configFile = new File(path, fileName);
 		dataConfig = (FileConfiguration)YamlConfiguration.loadConfiguration(configFile);
-		InputStream defaultStream = EconomyMain.getInstance().getResource(fileName);
+		InputStream defaultStream = ArcadesEconomyMain.getInstance().getResource(fileName);
 		if (defaultStream != null) {
 			YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defaultStream));
 			dataConfig.setDefaults((Configuration)defaultConfig);
@@ -48,7 +48,7 @@ public class YamlData {
 		try {
 			getConfig().save(configFile);
 		} catch (IOException e) {
-			EconomyMain.getInstance().getLogger().log(Level.SEVERE, "Could not save config to " + configFile, e);
+			ArcadesEconomyMain.getInstance().getLogger().log(Level.SEVERE, "Could not save config to " + configFile, e);
 		} 
 	}
   
@@ -61,6 +61,6 @@ public class YamlData {
 			e.printStackTrace();
 		}
 		if (!configFile.exists())
-			EconomyMain.getInstance().saveResource(path + "/" + fileName, false);
+			ArcadesEconomyMain.getInstance().saveResource(path + "/" + fileName, false);
 	}
 }

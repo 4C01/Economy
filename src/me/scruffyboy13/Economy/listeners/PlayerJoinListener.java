@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.scruffyboy13.Economy.EconomyMain;
+import me.scruffyboy13.Economy.ArcadesEconomyMain;
 
 public class PlayerJoinListener implements Listener {
 
@@ -15,14 +15,14 @@ public class PlayerJoinListener implements Listener {
 		
 		Player player = event.getPlayer();
 		
-		if (!EconomyMain.getEco().hasAccount(player.getUniqueId())) {
+		if (!ArcadesEconomyMain.getEco().hasAccount(player.getUniqueId())) {
 			new BukkitRunnable() {
 
 				@Override
 				public void run() {
-					EconomyMain.getEco().createAccount(player.getUniqueId());
+					ArcadesEconomyMain.getEco().createAccount(player.getUniqueId());
 				}
-			}.runTaskAsynchronously(EconomyMain.getInstance());
+			}.runTaskAsynchronously(ArcadesEconomyMain.getInstance());
 		}
 		
 	}

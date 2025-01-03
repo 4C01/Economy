@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.Economy.EconomyMain;
+import me.scruffyboy13.Economy.ArcadesEconomyMain;
 import me.scruffyboy13.Economy.commands.CommandExecutor;
 import me.scruffyboy13.Economy.data.ConfigHandler;
 import me.scruffyboy13.Economy.utils.StringUtils;
@@ -19,7 +19,7 @@ public class MoneySetCommand extends CommandExecutor {
 
 	public MoneySetCommand() {
 		this.setName("set");
-		this.setPermission("economy.command.set");
+		this.setPermission("arcadeseconomy.command.set");
 		this.setUsage(ConfigHandler.getMessage("money.set.usage"));
 		this.setBoth(true);
 		this.setLengths(Arrays.asList(3));
@@ -28,7 +28,7 @@ public class MoneySetCommand extends CommandExecutor {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 
-		List<OfflinePlayer> others = EconomyMain.getPlayersFromString(sender, args[1]);
+		List<OfflinePlayer> others = ArcadesEconomyMain.getPlayersFromString(sender, args[1]);
 		
 		if (others.isEmpty() && !args[1].equals("@a")) {
 			StringUtils.sendConfigMessage(sender, "messages.money.set.otherDoesntExist", ImmutableMap.of(
@@ -38,7 +38,7 @@ public class MoneySetCommand extends CommandExecutor {
 		
 		double amount = 0;
 		try {
-			amount = EconomyMain.getAmountFromString(args[2]);
+			amount = ArcadesEconomyMain.getAmountFromString(args[2]);
 		}
 		catch (NumberFormatException e){
 			StringUtils.sendConfigMessage(sender, "messages.money.set.invalidAmount", ImmutableMap.of(
@@ -56,19 +56,19 @@ public class MoneySetCommand extends CommandExecutor {
 		
 		for (OfflinePlayer other : others) {
 		
-			if (!EconomyMain.getEco().hasAccount(other.getUniqueId())) {
+			if (!ArcadesEconomyMain.getEco().hasAccount(other.getUniqueId())) {
 				StringUtils.sendConfigMessage(sender, "messages.money.set.otherNoAccount", ImmutableMap.of(
 						"%player%", other.getName()));
 				failed = true;
 				continue;
 			}
 			
-			EconomyMain.getEco().set(other.getUniqueId(), amount);
+			ArcadesEconomyMain.getEco().set(other.getUniqueId(), amount);
 			
 			if (other instanceof Player) {
 				if (!(sender instanceof Player && ((Player) sender).equals((Player) other))) {
 					StringUtils.sendConfigMessage((Player) other, "messages.money.set.set", ImmutableMap.of(
-							"%amount%", EconomyMain.format(amount)));
+							"%amount%", ArcadesEconomyMain.format(amount)));
 				}
 			}
 			
@@ -82,7 +82,7 @@ public class MoneySetCommand extends CommandExecutor {
 		
 				OfflinePlayer other = others.get(0);
 				StringUtils.sendConfigMessage(sender, "messages.money.set.setter", ImmutableMap.of(
-						"%balance%", EconomyMain.format(amount),
+						"%balance%", ArcadesEconomyMain.format(amount),
 						"%player%", other.getName()));
 				
 			}
@@ -93,7 +93,7 @@ public class MoneySetCommand extends CommandExecutor {
 			
 			StringUtils.sendConfigMessage(sender, "messages.money.set.setterMultiple", ImmutableMap.of(
 					"%total%", total + "",
-					"%balance%", EconomyMain.format(amount)
+					"%balance%", ArcadesEconomyMain.format(amount)
 					));
 			
 		}
