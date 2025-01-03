@@ -125,7 +125,7 @@ public class VaultImpl implements net.milkbowl.vault.economy.Economy {
 
 	@Override
 	public String getName() {
-		return "Economy";
+		return "ArcadesEconomy";
 	}
 
 	@SuppressWarnings("deprecation")

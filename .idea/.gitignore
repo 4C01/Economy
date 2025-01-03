@@ -53,6 +53,7 @@ buildNumber.properties
 *.iws
 /out/
 .idea_modules/
+out/
 
 # Eclipse
 *.pydevproject

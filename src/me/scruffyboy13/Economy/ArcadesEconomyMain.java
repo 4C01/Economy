@@ -112,7 +112,7 @@ public class ArcadesEconomyMain extends JavaPlugin {
 			return false;
 		}
 		this.getServer().getServicesManager().register(net.milkbowl.vault.economy.Economy.class, vaultImpl, this,
-				ServicePriority.Highest);
+				ServicePriority.High);
 		return true;
 	}
 	

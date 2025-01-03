@@ -9,33 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e054d4d-d85f-4a6a-8643-b42712859e0c" name="更改" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Economy_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Economy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Economy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/EconomyMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/ArcadesEconomyMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/BalanceCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/BalanceCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/BalanceTopCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/BalanceTopCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/PayCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/PayCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/money/MoneyGiveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/money/MoneyGiveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/money/MoneyHelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/money/MoneyHelpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/money/MoneyReloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/money/MoneyReloadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/money/MoneySetCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/money/MoneySetCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/money/MoneyTakeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/commands/money/MoneyTakeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/data/ConfigHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/data/ConfigHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/data/YamlData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/data/YamlData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/eco/SQLEconomy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/eco/SQLEconomy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/eco/VaultImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/eco/VaultImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/eco/YamlEconomy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/eco/YamlEconomy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/listeners/PlayerJoinListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/listeners/PlayerJoinListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/runnables/BalanceTopRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/runnables/BalanceTopRunnable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/scruffyboy13/Economy/utils/StringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugin.yml" afterDir="false" />
+    <list default="true" id="1e054d4d-d85f-4a6a-8643-b42712859e0c" name="更改" comment="replace plugin main class name to ArcadesEconomyMain&#10;replace command name&#10;replace MySQL table name&#10;replace default message&#10;replace permissions name&#10;set arcadeseconomy.command.pay default permission to op">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,11 +77,20 @@
       <option name="project" value="LOCAL" />
       <updated>1735932016098</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="replace plugin main class name to ArcadesEconomyMain&#10;replace command name&#10;replace MySQL table name&#10;replace default message&#10;replace permissions name&#10;set arcadeseconomy.command.pay default permission to op">
+      <option name="closed" value="true" />
+      <created>1735934851306</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1735934851306</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="replace plugin main class name to ArcadesEconomyMain&#10;replace command name&#10;replace MySQL table name&#10;replace default message&#10;replace permissions name&#10;set arcadeseconomy.command.pay default permission to op" />
+    <option name="LAST_COMMIT_MESSAGE" value="replace plugin main class name to ArcadesEconomyMain&#10;replace command name&#10;replace MySQL table name&#10;replace default message&#10;replace permissions name&#10;set arcadeseconomy.command.pay default permission to op" />
   </component>
 </project>
