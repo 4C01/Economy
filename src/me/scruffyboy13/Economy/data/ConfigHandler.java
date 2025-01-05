@@ -7,12 +7,12 @@ import java.util.Map;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import me.scruffyboy13.Economy.EconomyMain;
+import me.scruffyboy13.Economy.ArcadesEconomyMain;
 
 public class ConfigHandler {
 	
 	private static FileConfiguration getConfig() {
-		return EconomyMain.getInstance().getConfig();
+		return ArcadesEconomyMain.getInstance().getConfig();
 	}
 	
 	public static Object get(String path) {
@@ -78,7 +78,7 @@ public class ConfigHandler {
 	public static Map<String, Integer> getSuffixes() {
 		Map<String, Integer> suffixes = new HashMap<>();
 		for (String suffix : getConfig().getConfigurationSection("suffixes").getKeys(false)) {
-			suffixes.put(suffix, EconomyMain.getInstance().getConfig().getInt("suffixes." + suffix));
+			suffixes.put(suffix, ArcadesEconomyMain.getInstance().getConfig().getInt("suffixes." + suffix));
 		}
 		return suffixes;
 	}

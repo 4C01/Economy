@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.Economy.EconomyMain;
+import me.scruffyboy13.Economy.ArcadesEconomyMain;
 import me.scruffyboy13.Economy.utils.StringUtils;
 
 public class PayCommand implements org.bukkit.command.CommandExecutor {
@@ -17,7 +17,7 @@ public class PayCommand implements org.bukkit.command.CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String lebel, String[] args) {
 
-		if (sender.hasPermission("economy.command.pay")) {
+		if (sender.hasPermission("arcadeseconomy.command.pay")) {
 			
 			if (args.length == 2) {
 			
@@ -28,7 +28,7 @@ public class PayCommand implements org.bukkit.command.CommandExecutor {
 			
 			Player player = (Player) sender;
 			
-			if (!EconomyMain.getEco().hasAccount(player.getUniqueId())) {
+			if (!ArcadesEconomyMain.getEco().hasAccount(player.getUniqueId())) {
 				StringUtils.sendConfigMessage(player, "messages.pay.noAccount");
 				return true;
 			}
@@ -41,7 +41,7 @@ public class PayCommand implements org.bukkit.command.CommandExecutor {
 				return true;
 			}
 			
-			if (!EconomyMain.getEco().hasAccount(other.getUniqueId())) {
+			if (!ArcadesEconomyMain.getEco().hasAccount(other.getUniqueId())) {
 				StringUtils.sendConfigMessage(player, "messages.pay.otherNoAccount", ImmutableMap.of(
 						"%player%", other.getName()));
 				return true;
@@ -54,7 +54,7 @@ public class PayCommand implements org.bukkit.command.CommandExecutor {
 			
 			double amount = 0;
 			try {
-				amount = EconomyMain.getAmountFromString(args[1]);
+				amount = ArcadesEconomyMain.getAmountFromString(args[1]);
 			}
 			catch (NumberFormatException e){
 				StringUtils.sendConfigMessage(player, "messages.pay.invalidAmount", ImmutableMap.of(
@@ -67,21 +67,21 @@ public class PayCommand implements org.bukkit.command.CommandExecutor {
 				return true;
 			}
 			
-			if (!EconomyMain.getEco().has(player.getUniqueId(), amount)) {
+			if (!ArcadesEconomyMain.getEco().has(player.getUniqueId(), amount)) {
 				StringUtils.sendConfigMessage(player, "messages.pay.insufficientFunds");
 				return true;
 			}
 			
-			EconomyMain.getEco().withdraw(player.getUniqueId(), amount);
+			ArcadesEconomyMain.getEco().withdraw(player.getUniqueId(), amount);
 			StringUtils.sendConfigMessage(player, "messages.pay.paid", ImmutableMap.of(
 					"%player%", other.getName(), 
-					"%amount%", EconomyMain.format(amount)));
+					"%amount%", ArcadesEconomyMain.format(amount)));
 			
-			EconomyMain.getEco().deposit(other.getUniqueId(), amount);
+			ArcadesEconomyMain.getEco().deposit(other.getUniqueId(), amount);
 			if (other instanceof Player) {
 				StringUtils.sendConfigMessage((Player) other, "messages.pay.received", ImmutableMap.of(
 						"%player%", player.getName(), 
-						"%amount%", EconomyMain.format(amount)));
+						"%amount%", ArcadesEconomyMain.format(amount)));
 			}
 			
 			return true;

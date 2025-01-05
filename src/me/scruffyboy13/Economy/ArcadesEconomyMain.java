@@ -26,11 +26,11 @@ import me.scruffyboy13.Economy.eco.YamlEconomy;
 import me.scruffyboy13.Economy.listeners.PlayerJoinListener;
 import me.scruffyboy13.Economy.runnables.BalanceTopRunnable;
 
-public class EconomyMain extends JavaPlugin {
+public class ArcadesEconomyMain extends JavaPlugin {
 
 	private static MoneyCommandHandler moneyCommandHandler;
 	private static BalanceTopRunnable balanceTopRunnable;
-	private static EconomyMain instance;
+	private static ArcadesEconomyMain instance;
 	private static VaultImpl vaultImpl;
 	private static Economy eco;
 	private static Map<String, String> sqlColumns = new HashMap<>();
@@ -52,10 +52,10 @@ public class EconomyMain extends JavaPlugin {
 		balanceTopRunnable.start(ConfigHandler.getBalanceTopInterval());
 		
 		if (!setupEconomy()) {
-			disable("Economy couldn't be registed, Vault plugin is missing!");
+			disable("ArcadesEconomy couldn't be registed, Vault plugin is missing!");
 			return;
 		}
-		this.getLogger().info("Vault found, Economy has been registered.");
+		this.getLogger().info("Vault found, ArcadesEconomy has been registered.");
 
 		if (ConfigHandler.getLocale() == null) {
 			disable(ConfigHandler.getLocale().getDisplayName() + " is an invalid locale! Change it in your config.yml");
@@ -63,12 +63,12 @@ public class EconomyMain extends JavaPlugin {
 		}
 
 		moneyCommandHandler = new MoneyCommandHandler();
-		this.getCommand("money").setExecutor(moneyCommandHandler);
-		this.getCommand("money").setTabCompleter(moneyCommandHandler);
+		this.getCommand("arcadescoin").setExecutor(moneyCommandHandler);
+		this.getCommand("arcadescoin").setTabCompleter(moneyCommandHandler);
 		
-		this.getCommand("balance").setExecutor(new BalanceCommand());
-		this.getCommand("pay").setExecutor(new PayCommand());
-		this.getCommand("balancetop").setExecutor(new BalanceTopCommand());
+		this.getCommand("arcadesbalance").setExecutor(new BalanceCommand());
+		this.getCommand("arcadespay").setExecutor(new PayCommand());
+		this.getCommand("arcadesbalancetop").setExecutor(new BalanceTopCommand());
 		
 		this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
 		
@@ -90,21 +90,21 @@ public class EconomyMain extends JavaPlugin {
 		sqlColumns.put("Balance", "DECIMAL(65, 2) NOT NULL DEFAULT " + getConfig().getDouble("startingBalance"));
 	}
 
-	public static EconomyMain getInstance() {
+	public static ArcadesEconomyMain getInstance() {
 		return instance;
 	}
 	
 	public static String getPath() {
-		return EconomyMain.getInstance().getDataFolder().getAbsolutePath();
+		return ArcadesEconomyMain.getInstance().getDataFolder().getAbsolutePath();
 	}
 	
 	public static void warn(String message) {
-		EconomyMain.getInstance().getLogger().warning(message);
+		ArcadesEconomyMain.getInstance().getLogger().warning(message);
 	}
 	
 	public static void disable(String message) {
 		warn(message);
-		Bukkit.getPluginManager().disablePlugin(EconomyMain.getInstance());
+		Bukkit.getPluginManager().disablePlugin(ArcadesEconomyMain.getInstance());
 	}
 
 	private boolean setupEconomy() {
@@ -112,7 +112,7 @@ public class EconomyMain extends JavaPlugin {
 			return false;
 		}
 		this.getServer().getServicesManager().register(net.milkbowl.vault.economy.Economy.class, vaultImpl, this,
-				ServicePriority.Highest);
+				ServicePriority.High);
 		return true;
 	}
 	
@@ -170,7 +170,7 @@ public class EconomyMain extends JavaPlugin {
 	}
 
 	public static void setSuffixes(Map<String, Integer> suffixesFromConfig) {
-		EconomyMain.suffixes = suffixesFromConfig;
+		ArcadesEconomyMain.suffixes = suffixesFromConfig;
 	}
 
 	public static Map<String, Integer> getSuffixes() {
@@ -186,7 +186,7 @@ public class EconomyMain extends JavaPlugin {
 	}
 
 	public static void setBalanceTopRunnable(BalanceTopRunnable balanceTopRunnable) {
-		EconomyMain.balanceTopRunnable = balanceTopRunnable;
+		ArcadesEconomyMain.balanceTopRunnable = balanceTopRunnable;
 	}
 
 	public static MoneyCommandHandler getMoneyCommandHandler() {

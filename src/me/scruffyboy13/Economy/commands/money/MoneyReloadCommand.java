@@ -6,7 +6,7 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import me.scruffyboy13.Economy.EconomyMain;
+import me.scruffyboy13.Economy.ArcadesEconomyMain;
 import me.scruffyboy13.Economy.commands.CommandExecutor;
 import me.scruffyboy13.Economy.data.ConfigHandler;
 import me.scruffyboy13.Economy.runnables.BalanceTopRunnable;
@@ -16,7 +16,7 @@ public class MoneyReloadCommand extends CommandExecutor {
 
 	public MoneyReloadCommand() {
 		this.setName("reload");
-		this.setPermission("economy.command.reload");
+		this.setPermission("arcadeseconomy.command.reload");
 		this.setUsage(ConfigHandler.getMessage("money.reload.usage"));
 		this.setBoth(true);
 		this.setLengths(Arrays.asList(1));
@@ -26,12 +26,12 @@ public class MoneyReloadCommand extends CommandExecutor {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 
-		EconomyMain.getInstance().reloadConfig();
-		EconomyMain.setSuffixes(ConfigHandler.getSuffixes());
+		ArcadesEconomyMain.getInstance().reloadConfig();
+		ArcadesEconomyMain.setSuffixes(ConfigHandler.getSuffixes());
 		
-		EconomyMain.getBalanceTopRunnable().cancel();
-		EconomyMain.setBalanceTopRunnable(new BalanceTopRunnable());
-		EconomyMain.getBalanceTopRunnable().start(ConfigHandler.getBalanceTopInterval());
+		ArcadesEconomyMain.getBalanceTopRunnable().cancel();
+		ArcadesEconomyMain.setBalanceTopRunnable(new BalanceTopRunnable());
+		ArcadesEconomyMain.getBalanceTopRunnable().start(ConfigHandler.getBalanceTopInterval());
 		
 		StringUtils.sendConfigMessage(sender, "messages.money.reload.reloaded");
 		

@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.Economy.EconomyMain;
+import me.scruffyboy13.Economy.ArcadesEconomyMain;
 import me.scruffyboy13.Economy.utils.StringUtils;
 
 public class BalanceCommand implements org.bukkit.command.CommandExecutor {
@@ -17,7 +17,7 @@ public class BalanceCommand implements org.bukkit.command.CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
-		if (sender.hasPermission("economy.command.balance")) {
+		if (sender.hasPermission("arcadeseconomy.command.balance")) {
 		
 			if (args.length == 0) {
 				
@@ -28,14 +28,14 @@ public class BalanceCommand implements org.bukkit.command.CommandExecutor {
 				
 				Player player = (Player) sender;
 				
-				if (!EconomyMain.getEco().hasAccount(player.getUniqueId())) {
+				if (!ArcadesEconomyMain.getEco().hasAccount(player.getUniqueId())) {
 					StringUtils.sendConfigMessage(player, "messages.balance.noAccount");
 					return true;
 				}
 				
-				Double balance = EconomyMain.getEco().getBalance(player.getUniqueId()).getBalance();
+				Double balance = ArcadesEconomyMain.getEco().getBalance(player.getUniqueId()).getBalance();
 				StringUtils.sendConfigMessage(player, "messages.balance.balance", ImmutableMap.of(
-						"%balance%", EconomyMain.format(balance) + ""));
+						"%balance%", ArcadesEconomyMain.format(balance) + ""));
 				
 				return true;
 				
@@ -44,16 +44,16 @@ public class BalanceCommand implements org.bukkit.command.CommandExecutor {
 				
 				OfflinePlayer other = Bukkit.getOfflinePlayer(args[0]);
 				
-				if (!EconomyMain.getEco().hasAccount(other.getUniqueId())) {
+				if (!ArcadesEconomyMain.getEco().hasAccount(other.getUniqueId())) {
 					StringUtils.sendConfigMessage(sender, "messages.balance.otherNoAccount", ImmutableMap.of(
 							"%player%", other.getName()));
 					return true;
 				}
 	
-				Double balance = EconomyMain.getEco().getBalance(other.getUniqueId()).getBalance();
+				Double balance = ArcadesEconomyMain.getEco().getBalance(other.getUniqueId()).getBalance();
 				StringUtils.sendConfigMessage(sender, "messages.balance.otherBalance", ImmutableMap.of(
 						"%player%", other.getName(),
-						"%balance%", EconomyMain.format(balance) + ""));
+						"%balance%", ArcadesEconomyMain.format(balance) + ""));
 				
 				return true;
 				
