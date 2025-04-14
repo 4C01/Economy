@@ -1,5 +1,5 @@
 name: ArcadesEconomy
-main: me.scruffyboy13.Economy.ArcadesEconomyMain
+main: me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain
 version: 2.3
 api-version: 1.13
 author: scruffyboy13
