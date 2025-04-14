@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.eco;
+package me.scruffyboy13.ArcadesEconomy.eco;
 
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -12,9 +12,9 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 
-import me.scruffyboy13.Economy.ArcadesEconomyMain;
-import me.scruffyboy13.Economy.data.ConfigHandler;
-import me.scruffyboy13.Economy.data.MySQL;
+import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
+import me.scruffyboy13.ArcadesEconomy.data.ConfigHandler;
+import me.scruffyboy13.ArcadesEconomy.data.MySQL;
 
 public class SQLEconomy implements Economy {
 	

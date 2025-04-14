@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.commands;
+package me.scruffyboy13.ArcadesEconomy.commands;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.Economy.ArcadesEconomyMain;
-import me.scruffyboy13.Economy.eco.PlayerBalance;
-import me.scruffyboy13.Economy.utils.StringUtils;
+import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
+import me.scruffyboy13.ArcadesEconomy.eco.PlayerBalance;
+import me.scruffyboy13.ArcadesEconomy.utils.StringUtils;
 
 public class BalanceTopCommand implements org.bukkit.command.CommandExecutor {
 

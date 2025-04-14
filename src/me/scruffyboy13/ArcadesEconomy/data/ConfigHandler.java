@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.data;
+package me.scruffyboy13.ArcadesEconomy.data;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import me.scruffyboy13.Economy.ArcadesEconomyMain;
+import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
 
 public class ConfigHandler {
 	

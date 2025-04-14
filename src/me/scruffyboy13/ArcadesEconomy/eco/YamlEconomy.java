@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.eco;
+package me.scruffyboy13.ArcadesEconomy.eco;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import me.scruffyboy13.Economy.ArcadesEconomyMain;
-import me.scruffyboy13.Economy.data.ConfigHandler;
-import me.scruffyboy13.Economy.data.YamlData;
+import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
+import me.scruffyboy13.ArcadesEconomy.data.ConfigHandler;
+import me.scruffyboy13.ArcadesEconomy.data.YamlData;
 
 public class YamlEconomy implements Economy {
 	

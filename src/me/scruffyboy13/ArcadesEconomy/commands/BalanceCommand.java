@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.commands;
+package me.scruffyboy13.ArcadesEconomy.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -8,8 +8,8 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.Economy.ArcadesEconomyMain;
-import me.scruffyboy13.Economy.utils.StringUtils;
+import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
+import me.scruffyboy13.ArcadesEconomy.utils.StringUtils;
 
 public class BalanceCommand implements org.bukkit.command.CommandExecutor {
 

@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.commands;
+package me.scruffyboy13.ArcadesEconomy.commands;
 
 import java.util.ArrayList;
 import java.util.List;

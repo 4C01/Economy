@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.runnables;
+package me.scruffyboy13.ArcadesEconomy.runnables;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.scruffyboy13.Economy.ArcadesEconomyMain;
-import me.scruffyboy13.Economy.eco.PlayerBalance;
+import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
+import me.scruffyboy13.ArcadesEconomy.eco.PlayerBalance;
 
 public class BalanceTopRunnable extends BukkitRunnable {
 	

@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy;
+package me.scruffyboy13.ArcadesEconomy;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -14,17 +14,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.scruffyboy13.Economy.commands.BalanceCommand;
-import me.scruffyboy13.Economy.commands.BalanceTopCommand;
-import me.scruffyboy13.Economy.commands.PayCommand;
-import me.scruffyboy13.Economy.commands.money.MoneyCommandHandler;
-import me.scruffyboy13.Economy.data.ConfigHandler;
-import me.scruffyboy13.Economy.eco.Economy;
-import me.scruffyboy13.Economy.eco.SQLEconomy;
-import me.scruffyboy13.Economy.eco.VaultImpl;
-import me.scruffyboy13.Economy.eco.YamlEconomy;
-import me.scruffyboy13.Economy.listeners.PlayerJoinListener;
-import me.scruffyboy13.Economy.runnables.BalanceTopRunnable;
+import me.scruffyboy13.ArcadesEconomy.commands.BalanceCommand;
+import me.scruffyboy13.ArcadesEconomy.commands.BalanceTopCommand;
+import me.scruffyboy13.ArcadesEconomy.commands.PayCommand;
+import me.scruffyboy13.ArcadesEconomy.commands.money.MoneyCommandHandler;
+import me.scruffyboy13.ArcadesEconomy.data.ConfigHandler;
+import me.scruffyboy13.ArcadesEconomy.eco.Economy;
+import me.scruffyboy13.ArcadesEconomy.eco.SQLEconomy;
+import me.scruffyboy13.ArcadesEconomy.eco.VaultImpl;
+import me.scruffyboy13.ArcadesEconomy.eco.YamlEconomy;
+import me.scruffyboy13.ArcadesEconomy.listeners.PlayerJoinListener;
+import me.scruffyboy13.ArcadesEconomy.runnables.BalanceTopRunnable;
 
 public class ArcadesEconomyMain extends JavaPlugin {
 

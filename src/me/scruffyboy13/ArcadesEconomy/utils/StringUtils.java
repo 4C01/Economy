@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.utils;
+package me.scruffyboy13.ArcadesEconomy.utils;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.Economy.ArcadesEconomyMain;
+import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
 
 public class StringUtils {
 

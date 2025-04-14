@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.data;
+package me.scruffyboy13.ArcadesEconomy.data;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import me.scruffyboy13.Economy.ArcadesEconomyMain;
+import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
 
 public class YamlData {
 	

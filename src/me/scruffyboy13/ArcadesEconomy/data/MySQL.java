@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.data;
+package me.scruffyboy13.ArcadesEconomy.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

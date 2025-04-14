@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.commands.money;
+package me.scruffyboy13.ArcadesEconomy.commands.money;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,8 +11,8 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-import me.scruffyboy13.Economy.commands.CommandExecutor;
-import me.scruffyboy13.Economy.utils.StringUtils;
+import me.scruffyboy13.ArcadesEconomy.commands.CommandExecutor;
+import me.scruffyboy13.ArcadesEconomy.utils.StringUtils;
 
 public class MoneyCommandHandler implements org.bukkit.command.CommandExecutor, TabCompleter {
 

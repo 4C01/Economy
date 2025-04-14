@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.commands.money;
+package me.scruffyboy13.ArcadesEconomy.commands.money;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,28 +10,28 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.Economy.ArcadesEconomyMain;
-import me.scruffyboy13.Economy.commands.CommandExecutor;
-import me.scruffyboy13.Economy.data.ConfigHandler;
-import me.scruffyboy13.Economy.utils.StringUtils;
+import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
+import me.scruffyboy13.ArcadesEconomy.commands.CommandExecutor;
+import me.scruffyboy13.ArcadesEconomy.data.ConfigHandler;
+import me.scruffyboy13.ArcadesEconomy.utils.StringUtils;
 
-public class MoneySetCommand extends CommandExecutor {
+public class MoneyGiveCommand extends CommandExecutor {
 
-	public MoneySetCommand() {
-		this.setName("set");
-		this.setPermission("arcadeseconomy.command.set");
-		this.setUsage(ConfigHandler.getMessage("money.set.usage"));
+	public MoneyGiveCommand() {
+		this.setName("give");
+		this.setPermission("arcadeseconomy.command.give");
+		this.setUsage(ConfigHandler.getMessage("money.give.usage"));
 		this.setBoth(true);
 		this.setLengths(Arrays.asList(3));
 	}
-
+	
 	@Override
 	public void execute(CommandSender sender, String[] args) {
-
+		
 		List<OfflinePlayer> others = ArcadesEconomyMain.getPlayersFromString(sender, args[1]);
 		
 		if (others.isEmpty() && !args[1].equals("@a")) {
-			StringUtils.sendConfigMessage(sender, "messages.money.set.otherDoesntExist", ImmutableMap.of(
+			StringUtils.sendConfigMessage(sender, "messages.money.give.otherDoesntExist", ImmutableMap.of(
 					"%player%", args[1]));
 			return;
 		}
@@ -41,12 +41,12 @@ public class MoneySetCommand extends CommandExecutor {
 			amount = ArcadesEconomyMain.getAmountFromString(args[2]);
 		}
 		catch (NumberFormatException e){
-			StringUtils.sendConfigMessage(sender, "messages.money.set.invalidAmount", ImmutableMap.of(
+			StringUtils.sendConfigMessage(sender, "messages.money.give.invalidAmount", ImmutableMap.of(
 					"%amount%", args[2]));
 			return;
 		}
 		if (amount < 0) {
-			StringUtils.sendConfigMessage(sender, "messages.money.set.invalidAmount", ImmutableMap.of(
+			StringUtils.sendConfigMessage(sender, "messages.money.give.invalidAmount", ImmutableMap.of(
 					"%amount%", args[2]));
 			return;
 		}
@@ -57,43 +57,43 @@ public class MoneySetCommand extends CommandExecutor {
 		for (OfflinePlayer other : others) {
 		
 			if (!ArcadesEconomyMain.getEco().hasAccount(other.getUniqueId())) {
-				StringUtils.sendConfigMessage(sender, "messages.money.set.otherNoAccount", ImmutableMap.of(
+				StringUtils.sendConfigMessage(sender, "messages.money.give.otherNoAccount", ImmutableMap.of(
 						"%player%", other.getName()));
 				failed = true;
 				continue;
 			}
 			
-			ArcadesEconomyMain.getEco().set(other.getUniqueId(), amount);
-			
+			ArcadesEconomyMain.getEco().deposit(other.getUniqueId(), amount);
+		
 			if (other instanceof Player) {
 				if (!(sender instanceof Player && ((Player) sender).equals((Player) other))) {
-					StringUtils.sendConfigMessage((Player) other, "messages.money.set.set", ImmutableMap.of(
+					StringUtils.sendConfigMessage((Player) other, "messages.money.give.received", ImmutableMap.of(
 							"%amount%", ArcadesEconomyMain.format(amount)));
 				}
 			}
 			
 			total += 1;
-		
+			
 		}
 		
 		if (others.size() == 1) {
 			
 			if (!failed) {
-		
+			
 				OfflinePlayer other = others.get(0);
-				StringUtils.sendConfigMessage(sender, "messages.money.set.setter", ImmutableMap.of(
-						"%balance%", ArcadesEconomyMain.format(amount),
+				StringUtils.sendConfigMessage(sender, "messages.money.give.sent", ImmutableMap.of(
+						"%amount%", ArcadesEconomyMain.format(amount),
 						"%player%", other.getName()));
-				
+			
 			}
-		
+			
 		}
 		
 		else {
-			
-			StringUtils.sendConfigMessage(sender, "messages.money.set.setterMultiple", ImmutableMap.of(
+		
+			StringUtils.sendConfigMessage(sender, "messages.money.give.sentMultiple", ImmutableMap.of(
 					"%total%", total + "",
-					"%balance%", ArcadesEconomyMain.format(amount)
+					"%amount%", ArcadesEconomyMain.format(amount)
 					));
 			
 		}

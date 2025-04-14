@@ -1,4 +1,4 @@
-package me.scruffyboy13.Economy.commands.money;
+package me.scruffyboy13.ArcadesEconomy.commands.money;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import me.scruffyboy13.Economy.ArcadesEconomyMain;
-import me.scruffyboy13.Economy.commands.CommandExecutor;
-import me.scruffyboy13.Economy.data.ConfigHandler;
-import me.scruffyboy13.Economy.runnables.BalanceTopRunnable;
-import me.scruffyboy13.Economy.utils.StringUtils;
+import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
+import me.scruffyboy13.ArcadesEconomy.commands.CommandExecutor;
+import me.scruffyboy13.ArcadesEconomy.data.ConfigHandler;
+import me.scruffyboy13.ArcadesEconomy.runnables.BalanceTopRunnable;
+import me.scruffyboy13.ArcadesEconomy.utils.StringUtils;
 
 public class MoneyReloadCommand extends CommandExecutor {
 
