@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.commands.money;
+package me.scruffyboy13.BedwarsEconomy.commands.money;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,16 +10,16 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
-import me.scruffyboy13.ArcadesEconomy.commands.CommandExecutor;
-import me.scruffyboy13.ArcadesEconomy.data.ConfigHandler;
-import me.scruffyboy13.ArcadesEconomy.utils.StringUtils;
+import me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain;
+import me.scruffyboy13.BedwarsEconomy.commands.CommandExecutor;
+import me.scruffyboy13.BedwarsEconomy.data.ConfigHandler;
+import me.scruffyboy13.BedwarsEconomy.utils.StringUtils;
 
 public class MoneySetCommand extends CommandExecutor {
 
 	public MoneySetCommand() {
 		this.setName("set");
-		this.setPermission("arcadeseconomy.command.set");
+		this.setPermission("Bedwarseconomy.command.set");
 		this.setUsage(ConfigHandler.getMessage("money.set.usage"));
 		this.setBoth(true);
 		this.setLengths(Arrays.asList(3));
@@ -28,7 +28,7 @@ public class MoneySetCommand extends CommandExecutor {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 
-		List<OfflinePlayer> others = ArcadesEconomyMain.getPlayersFromString(sender, args[1]);
+		List<OfflinePlayer> others = BedwarsEconomyMain.getPlayersFromString(sender, args[1]);
 		
 		if (others.isEmpty() && !args[1].equals("@a")) {
 			StringUtils.sendConfigMessage(sender, "messages.money.set.otherDoesntExist", ImmutableMap.of(
@@ -38,7 +38,7 @@ public class MoneySetCommand extends CommandExecutor {
 		
 		double amount = 0;
 		try {
-			amount = ArcadesEconomyMain.getAmountFromString(args[2]);
+			amount = BedwarsEconomyMain.getAmountFromString(args[2]);
 		}
 		catch (NumberFormatException e){
 			StringUtils.sendConfigMessage(sender, "messages.money.set.invalidAmount", ImmutableMap.of(
@@ -56,19 +56,19 @@ public class MoneySetCommand extends CommandExecutor {
 		
 		for (OfflinePlayer other : others) {
 		
-			if (!ArcadesEconomyMain.getEco().hasAccount(other.getUniqueId())) {
+			if (!BedwarsEconomyMain.getEco().hasAccount(other.getUniqueId())) {
 				StringUtils.sendConfigMessage(sender, "messages.money.set.otherNoAccount", ImmutableMap.of(
 						"%player%", other.getName()));
 				failed = true;
 				continue;
 			}
 			
-			ArcadesEconomyMain.getEco().set(other.getUniqueId(), amount);
+			BedwarsEconomyMain.getEco().set(other.getUniqueId(), amount);
 			
 			if (other instanceof Player) {
 				if (!(sender instanceof Player && ((Player) sender).equals((Player) other))) {
 					StringUtils.sendConfigMessage((Player) other, "messages.money.set.set", ImmutableMap.of(
-							"%amount%", ArcadesEconomyMain.format(amount)));
+							"%amount%", BedwarsEconomyMain.format(amount)));
 				}
 			}
 			
@@ -82,7 +82,7 @@ public class MoneySetCommand extends CommandExecutor {
 		
 				OfflinePlayer other = others.get(0);
 				StringUtils.sendConfigMessage(sender, "messages.money.set.setter", ImmutableMap.of(
-						"%balance%", ArcadesEconomyMain.format(amount),
+						"%balance%", BedwarsEconomyMain.format(amount),
 						"%player%", other.getName()));
 				
 			}
@@ -93,7 +93,7 @@ public class MoneySetCommand extends CommandExecutor {
 			
 			StringUtils.sendConfigMessage(sender, "messages.money.set.setterMultiple", ImmutableMap.of(
 					"%total%", total + "",
-					"%balance%", ArcadesEconomyMain.format(amount)
+					"%balance%", BedwarsEconomyMain.format(amount)
 					));
 			
 		}

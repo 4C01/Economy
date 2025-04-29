@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.eco;
+package me.scruffyboy13.BedwarsEconomy.eco;
 
 import java.util.List;
 import java.util.UUID;

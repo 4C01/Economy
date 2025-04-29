@@ -1,5 +1,5 @@
-name: ArcadesEconomy
-main: me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain
+name: BedwarsEconomy
+main: me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain
 version: 2.3
 api-version: 1.13
 author: scruffyboy13
@@ -7,29 +7,29 @@ depend: [Vault]
 load: STARTUP
 
 commands:
-  arcadescoin:
-    aliases: [arcadesc]
-  arcadesbalance:
-    aliases: [arcadesbal]
-  arcadesbalancetop:
-    aliases: [arcadesbaltop]
-  arcadespay:
+  Bedwarscoin:
+    aliases: [Bedwarsc]
+  Bedwarsbalance:
+    aliases: [Bedwarsbal]
+  Bedwarsbalancetop:
+    aliases: [Bedwarsbaltop]
+  Bedwarspay:
     aliases: []
 
 permissions:
-  arcadeseconomy.command.balance:
+  Bedwarseconomy.command.balance:
     default: true
-  arcadeseconomy.command.balancetop:
+  Bedwarseconomy.command.balancetop:
     default: true
-  arcadeseconomy.command.help:
+  Bedwarseconomy.command.help:
     default: true
-  arcadeseconomy.command.pay:
+  Bedwarseconomy.command.pay:
     default: op
-  arcadeseconomy.command.give:
+  Bedwarseconomy.command.give:
     default: op
-  arcadeseconomy.command.take:
+  Bedwarseconomy.command.take:
     default: op
-  arcadeseconomy.command.set:
+  Bedwarseconomy.command.set:
     default: op
-  arcadeseconomy.command.reload:
+  Bedwarseconomy.command.reload:
     default: op

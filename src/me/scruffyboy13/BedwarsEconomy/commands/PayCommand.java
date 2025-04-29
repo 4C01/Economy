@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.commands;
+package me.scruffyboy13.BedwarsEconomy.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -8,8 +8,8 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
-import me.scruffyboy13.ArcadesEconomy.utils.StringUtils;
+import me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain;
+import me.scruffyboy13.BedwarsEconomy.utils.StringUtils;
 
 public class PayCommand implements org.bukkit.command.CommandExecutor {
 
@@ -17,7 +17,7 @@ public class PayCommand implements org.bukkit.command.CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String lebel, String[] args) {
 
-		if (sender.hasPermission("arcadeseconomy.command.pay")) {
+		if (sender.hasPermission("Bedwarseconomy.command.pay")) {
 			
 			if (args.length == 2) {
 			
@@ -28,7 +28,7 @@ public class PayCommand implements org.bukkit.command.CommandExecutor {
 			
 			Player player = (Player) sender;
 			
-			if (!ArcadesEconomyMain.getEco().hasAccount(player.getUniqueId())) {
+			if (!BedwarsEconomyMain.getEco().hasAccount(player.getUniqueId())) {
 				StringUtils.sendConfigMessage(player, "messages.pay.noAccount");
 				return true;
 			}
@@ -41,7 +41,7 @@ public class PayCommand implements org.bukkit.command.CommandExecutor {
 				return true;
 			}
 			
-			if (!ArcadesEconomyMain.getEco().hasAccount(other.getUniqueId())) {
+			if (!BedwarsEconomyMain.getEco().hasAccount(other.getUniqueId())) {
 				StringUtils.sendConfigMessage(player, "messages.pay.otherNoAccount", ImmutableMap.of(
 						"%player%", other.getName()));
 				return true;
@@ -54,7 +54,7 @@ public class PayCommand implements org.bukkit.command.CommandExecutor {
 			
 			double amount = 0;
 			try {
-				amount = ArcadesEconomyMain.getAmountFromString(args[1]);
+				amount = BedwarsEconomyMain.getAmountFromString(args[1]);
 			}
 			catch (NumberFormatException e){
 				StringUtils.sendConfigMessage(player, "messages.pay.invalidAmount", ImmutableMap.of(
@@ -67,21 +67,21 @@ public class PayCommand implements org.bukkit.command.CommandExecutor {
 				return true;
 			}
 			
-			if (!ArcadesEconomyMain.getEco().has(player.getUniqueId(), amount)) {
+			if (!BedwarsEconomyMain.getEco().has(player.getUniqueId(), amount)) {
 				StringUtils.sendConfigMessage(player, "messages.pay.insufficientFunds");
 				return true;
 			}
 			
-			ArcadesEconomyMain.getEco().withdraw(player.getUniqueId(), amount);
+			BedwarsEconomyMain.getEco().withdraw(player.getUniqueId(), amount);
 			StringUtils.sendConfigMessage(player, "messages.pay.paid", ImmutableMap.of(
 					"%player%", other.getName(), 
-					"%amount%", ArcadesEconomyMain.format(amount)));
+					"%amount%", BedwarsEconomyMain.format(amount)));
 			
-			ArcadesEconomyMain.getEco().deposit(other.getUniqueId(), amount);
+			BedwarsEconomyMain.getEco().deposit(other.getUniqueId(), amount);
 			if (other instanceof Player) {
 				StringUtils.sendConfigMessage((Player) other, "messages.pay.received", ImmutableMap.of(
 						"%player%", player.getName(), 
-						"%amount%", ArcadesEconomyMain.format(amount)));
+						"%amount%", BedwarsEconomyMain.format(amount)));
 			}
 			
 			return true;

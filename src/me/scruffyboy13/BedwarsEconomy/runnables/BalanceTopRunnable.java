@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.runnables;
+package me.scruffyboy13.BedwarsEconomy.runnables;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
-import me.scruffyboy13.ArcadesEconomy.eco.PlayerBalance;
+import me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain;
+import me.scruffyboy13.BedwarsEconomy.eco.PlayerBalance;
 
 public class BalanceTopRunnable extends BukkitRunnable {
 	
@@ -16,7 +16,7 @@ public class BalanceTopRunnable extends BukkitRunnable {
 	@Override
 	public void run() {
 		
-		List<PlayerBalance> btop = new ArrayList<PlayerBalance>(ArcadesEconomyMain.getEco().getPlayers());
+		List<PlayerBalance> btop = new ArrayList<PlayerBalance>(BedwarsEconomyMain.getEco().getPlayers());
 		btop.sort(Comparator.comparingDouble(PlayerBalance::getBalance).reversed());
 
 		this.balanceTop = btop;
@@ -25,7 +25,7 @@ public class BalanceTopRunnable extends BukkitRunnable {
 
 	public void start(int interval) {
 		
-		this.runTaskTimerAsynchronously(ArcadesEconomyMain.getInstance(), 1, interval);
+		this.runTaskTimerAsynchronously(BedwarsEconomyMain.getInstance(), 1, interval);
 		
 	}
 

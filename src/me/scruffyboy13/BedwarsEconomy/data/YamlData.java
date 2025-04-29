@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.data;
+package me.scruffyboy13.BedwarsEconomy.data;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
+import me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain;
 
 public class YamlData {
 	
@@ -29,7 +29,7 @@ public class YamlData {
 		if (configFile == null)
 			configFile = new File(path, fileName);
 		dataConfig = (FileConfiguration)YamlConfiguration.loadConfiguration(configFile);
-		InputStream defaultStream = ArcadesEconomyMain.getInstance().getResource(fileName);
+		InputStream defaultStream = BedwarsEconomyMain.getInstance().getResource(fileName);
 		if (defaultStream != null) {
 			YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defaultStream));
 			dataConfig.setDefaults((Configuration)defaultConfig);
@@ -48,7 +48,7 @@ public class YamlData {
 		try {
 			getConfig().save(configFile);
 		} catch (IOException e) {
-			ArcadesEconomyMain.getInstance().getLogger().log(Level.SEVERE, "Could not save config to " + configFile, e);
+			BedwarsEconomyMain.getInstance().getLogger().log(Level.SEVERE, "Could not save config to " + configFile, e);
 		} 
 	}
   
@@ -61,6 +61,6 @@ public class YamlData {
 			e.printStackTrace();
 		}
 		if (!configFile.exists())
-			ArcadesEconomyMain.getInstance().saveResource(path + "/" + fileName, false);
+			BedwarsEconomyMain.getInstance().saveResource(path + "/" + fileName, false);
 	}
 }

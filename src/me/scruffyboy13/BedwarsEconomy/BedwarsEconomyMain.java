@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy;
+package me.scruffyboy13.BedwarsEconomy;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -14,23 +14,23 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.scruffyboy13.ArcadesEconomy.commands.BalanceCommand;
-import me.scruffyboy13.ArcadesEconomy.commands.BalanceTopCommand;
-import me.scruffyboy13.ArcadesEconomy.commands.PayCommand;
-import me.scruffyboy13.ArcadesEconomy.commands.money.MoneyCommandHandler;
-import me.scruffyboy13.ArcadesEconomy.data.ConfigHandler;
-import me.scruffyboy13.ArcadesEconomy.eco.Economy;
-import me.scruffyboy13.ArcadesEconomy.eco.SQLEconomy;
-import me.scruffyboy13.ArcadesEconomy.eco.VaultImpl;
-import me.scruffyboy13.ArcadesEconomy.eco.YamlEconomy;
-import me.scruffyboy13.ArcadesEconomy.listeners.PlayerJoinListener;
-import me.scruffyboy13.ArcadesEconomy.runnables.BalanceTopRunnable;
+import me.scruffyboy13.BedwarsEconomy.commands.BalanceCommand;
+import me.scruffyboy13.BedwarsEconomy.commands.BalanceTopCommand;
+import me.scruffyboy13.BedwarsEconomy.commands.PayCommand;
+import me.scruffyboy13.BedwarsEconomy.commands.money.MoneyCommandHandler;
+import me.scruffyboy13.BedwarsEconomy.data.ConfigHandler;
+import me.scruffyboy13.BedwarsEconomy.eco.Economy;
+import me.scruffyboy13.BedwarsEconomy.eco.SQLEconomy;
+import me.scruffyboy13.BedwarsEconomy.eco.VaultImpl;
+import me.scruffyboy13.BedwarsEconomy.eco.YamlEconomy;
+import me.scruffyboy13.BedwarsEconomy.listeners.PlayerJoinListener;
+import me.scruffyboy13.BedwarsEconomy.runnables.BalanceTopRunnable;
 
-public class ArcadesEconomyMain extends JavaPlugin {
+public class BedwarsEconomyMain extends JavaPlugin {
 
 	private static MoneyCommandHandler moneyCommandHandler;
 	private static BalanceTopRunnable balanceTopRunnable;
-	private static ArcadesEconomyMain instance;
+	private static BedwarsEconomyMain instance;
 	private static VaultImpl vaultImpl;
 	private static Economy eco;
 	private static Map<String, String> sqlColumns = new HashMap<>();
@@ -52,10 +52,10 @@ public class ArcadesEconomyMain extends JavaPlugin {
 		balanceTopRunnable.start(ConfigHandler.getBalanceTopInterval());
 		
 		if (!setupEconomy()) {
-			disable("ArcadesEconomy couldn't be registed, Vault plugin is missing!");
+			disable("BedwarsEconomy couldn't be registed, Vault plugin is missing!");
 			return;
 		}
-		this.getLogger().info("Vault found, ArcadesEconomy has been registered.");
+		this.getLogger().info("Vault found, BedwarsEconomy has been registered.");
 
 		if (ConfigHandler.getLocale() == null) {
 			disable(ConfigHandler.getLocale().getDisplayName() + " is an invalid locale! Change it in your config.yml");
@@ -63,12 +63,12 @@ public class ArcadesEconomyMain extends JavaPlugin {
 		}
 
 		moneyCommandHandler = new MoneyCommandHandler();
-		this.getCommand("arcadescoin").setExecutor(moneyCommandHandler);
-		this.getCommand("arcadescoin").setTabCompleter(moneyCommandHandler);
+		this.getCommand("Bedwarscoin").setExecutor(moneyCommandHandler);
+		this.getCommand("Bedwarscoin").setTabCompleter(moneyCommandHandler);
 		
-		this.getCommand("arcadesbalance").setExecutor(new BalanceCommand());
-		this.getCommand("arcadespay").setExecutor(new PayCommand());
-		this.getCommand("arcadesbalancetop").setExecutor(new BalanceTopCommand());
+		this.getCommand("Bedwarsbalance").setExecutor(new BalanceCommand());
+		this.getCommand("Bedwarspay").setExecutor(new PayCommand());
+		this.getCommand("Bedwarsbalancetop").setExecutor(new BalanceTopCommand());
 		
 		this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
 		
@@ -90,21 +90,21 @@ public class ArcadesEconomyMain extends JavaPlugin {
 		sqlColumns.put("Balance", "DECIMAL(65, 2) NOT NULL DEFAULT " + getConfig().getDouble("startingBalance"));
 	}
 
-	public static ArcadesEconomyMain getInstance() {
+	public static BedwarsEconomyMain getInstance() {
 		return instance;
 	}
 	
 	public static String getPath() {
-		return ArcadesEconomyMain.getInstance().getDataFolder().getAbsolutePath();
+		return BedwarsEconomyMain.getInstance().getDataFolder().getAbsolutePath();
 	}
 	
 	public static void warn(String message) {
-		ArcadesEconomyMain.getInstance().getLogger().warning(message);
+		BedwarsEconomyMain.getInstance().getLogger().warning(message);
 	}
 	
 	public static void disable(String message) {
 		warn(message);
-		Bukkit.getPluginManager().disablePlugin(ArcadesEconomyMain.getInstance());
+		Bukkit.getPluginManager().disablePlugin(BedwarsEconomyMain.getInstance());
 	}
 
 	private boolean setupEconomy() {
@@ -170,7 +170,7 @@ public class ArcadesEconomyMain extends JavaPlugin {
 	}
 
 	public static void setSuffixes(Map<String, Integer> suffixesFromConfig) {
-		ArcadesEconomyMain.suffixes = suffixesFromConfig;
+		BedwarsEconomyMain.suffixes = suffixesFromConfig;
 	}
 
 	public static Map<String, Integer> getSuffixes() {
@@ -186,7 +186,7 @@ public class ArcadesEconomyMain extends JavaPlugin {
 	}
 
 	public static void setBalanceTopRunnable(BalanceTopRunnable balanceTopRunnable) {
-		ArcadesEconomyMain.balanceTopRunnable = balanceTopRunnable;
+		BedwarsEconomyMain.balanceTopRunnable = balanceTopRunnable;
 	}
 
 	public static MoneyCommandHandler getMoneyCommandHandler() {

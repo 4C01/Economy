@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.data;
+package me.scruffyboy13.BedwarsEconomy.data;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,12 +7,12 @@ import java.util.Map;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
+import me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain;
 
 public class ConfigHandler {
 	
 	private static FileConfiguration getConfig() {
-		return ArcadesEconomyMain.getInstance().getConfig();
+		return BedwarsEconomyMain.getInstance().getConfig();
 	}
 	
 	public static Object get(String path) {
@@ -78,7 +78,7 @@ public class ConfigHandler {
 	public static Map<String, Integer> getSuffixes() {
 		Map<String, Integer> suffixes = new HashMap<>();
 		for (String suffix : getConfig().getConfigurationSection("suffixes").getKeys(false)) {
-			suffixes.put(suffix, ArcadesEconomyMain.getInstance().getConfig().getInt("suffixes." + suffix));
+			suffixes.put(suffix, BedwarsEconomyMain.getInstance().getConfig().getInt("suffixes." + suffix));
 		}
 		return suffixes;
 	}

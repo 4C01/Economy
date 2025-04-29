@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.commands;
+package me.scruffyboy13.BedwarsEconomy.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -8,8 +8,8 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
-import me.scruffyboy13.ArcadesEconomy.utils.StringUtils;
+import me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain;
+import me.scruffyboy13.BedwarsEconomy.utils.StringUtils;
 
 public class BalanceCommand implements org.bukkit.command.CommandExecutor {
 
@@ -17,7 +17,7 @@ public class BalanceCommand implements org.bukkit.command.CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
-		if (sender.hasPermission("arcadeseconomy.command.balance")) {
+		if (sender.hasPermission("Bedwarseconomy.command.balance")) {
 		
 			if (args.length == 0) {
 				
@@ -28,14 +28,14 @@ public class BalanceCommand implements org.bukkit.command.CommandExecutor {
 				
 				Player player = (Player) sender;
 				
-				if (!ArcadesEconomyMain.getEco().hasAccount(player.getUniqueId())) {
+				if (!BedwarsEconomyMain.getEco().hasAccount(player.getUniqueId())) {
 					StringUtils.sendConfigMessage(player, "messages.balance.noAccount");
 					return true;
 				}
 				
-				Double balance = ArcadesEconomyMain.getEco().getBalance(player.getUniqueId()).getBalance();
+				Double balance = BedwarsEconomyMain.getEco().getBalance(player.getUniqueId()).getBalance();
 				StringUtils.sendConfigMessage(player, "messages.balance.balance", ImmutableMap.of(
-						"%balance%", ArcadesEconomyMain.format(balance) + ""));
+						"%balance%", BedwarsEconomyMain.format(balance) + ""));
 				
 				return true;
 				
@@ -44,16 +44,16 @@ public class BalanceCommand implements org.bukkit.command.CommandExecutor {
 				
 				OfflinePlayer other = Bukkit.getOfflinePlayer(args[0]);
 				
-				if (!ArcadesEconomyMain.getEco().hasAccount(other.getUniqueId())) {
+				if (!BedwarsEconomyMain.getEco().hasAccount(other.getUniqueId())) {
 					StringUtils.sendConfigMessage(sender, "messages.balance.otherNoAccount", ImmutableMap.of(
 							"%player%", other.getName()));
 					return true;
 				}
 	
-				Double balance = ArcadesEconomyMain.getEco().getBalance(other.getUniqueId()).getBalance();
+				Double balance = BedwarsEconomyMain.getEco().getBalance(other.getUniqueId()).getBalance();
 				StringUtils.sendConfigMessage(sender, "messages.balance.otherBalance", ImmutableMap.of(
 						"%player%", other.getName(),
-						"%balance%", ArcadesEconomyMain.format(balance) + ""));
+						"%balance%", BedwarsEconomyMain.format(balance) + ""));
 				
 				return true;
 				

@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.eco;
+package me.scruffyboy13.BedwarsEconomy.eco;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
-import me.scruffyboy13.ArcadesEconomy.data.ConfigHandler;
-import me.scruffyboy13.ArcadesEconomy.data.YamlData;
+import me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain;
+import me.scruffyboy13.BedwarsEconomy.data.ConfigHandler;
+import me.scruffyboy13.BedwarsEconomy.data.YamlData;
 
 public class YamlEconomy implements Economy {
 	
 	public YamlEconomy() {
 		
-		Path dataDir = Paths.get(ArcadesEconomyMain.getPath() + "/data/");
+		Path dataDir = Paths.get(BedwarsEconomyMain.getPath() + "/data/");
 		if (!Files.exists(dataDir)) {
 			try {
 				Files.createDirectory(dataDir);
 			} catch (IOException e) {
-				ArcadesEconomyMain.warn("There was an error creating the data directory.");
+				BedwarsEconomyMain.warn("There was an error creating the data directory.");
 	            return;
 			}
 		}
@@ -47,7 +47,7 @@ public class YamlEconomy implements Economy {
 
 	@Override
 	public boolean delete(UUID uuid) {
-		File islandFile = new File(ArcadesEconomyMain.getPath() + "/data/" + uuid.toString() + ".yml");
+		File islandFile = new File(BedwarsEconomyMain.getPath() + "/data/" + uuid.toString() + ".yml");
 		islandFile.delete();
 		return true;
 	}
@@ -66,7 +66,7 @@ public class YamlEconomy implements Economy {
 	public boolean set(UUID uuid, double amount) {
 		if (amount < 0)
 			return false;
-		YamlData data = new YamlData(uuid.toString() + ".yml", ArcadesEconomyMain.getPath() + "/data");
+		YamlData data = new YamlData(uuid.toString() + ".yml", BedwarsEconomyMain.getPath() + "/data");
 		data.getConfig().set("UUID", uuid.toString());
 		data.getConfig().set("Balance", amount);
 		data.saveConfig();
@@ -81,7 +81,7 @@ public class YamlEconomy implements Economy {
 	@Override
 	public PlayerBalance getBalance(UUID uuid) {
 		try {
-			YamlData data = new YamlData(uuid.toString() + ".yml", ArcadesEconomyMain.getPath() + "/data");
+			YamlData data = new YamlData(uuid.toString() + ".yml", BedwarsEconomyMain.getPath() + "/data");
 			double balance = data.getConfig().getDouble("Balance");
 			return new PlayerBalance(uuid, balance);
 		} catch (Exception e) {
@@ -92,7 +92,7 @@ public class YamlEconomy implements Economy {
 	@Override
 	public List<PlayerBalance> getPlayers() {
 		List<PlayerBalance> playerData = new ArrayList<PlayerBalance>();
-		File[] files = new File(ArcadesEconomyMain.getPath() + "/data").listFiles();
+		File[] files = new File(BedwarsEconomyMain.getPath() + "/data").listFiles();
 		for (File file : files) {
 			playerData.add(getBalance(UUID.fromString(file.getName().replace(".yml", ""))));
 		}

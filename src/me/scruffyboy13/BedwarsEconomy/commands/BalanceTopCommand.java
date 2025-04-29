@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.commands;
+package me.scruffyboy13.BedwarsEconomy.commands;
 
 import java.util.List;
 
@@ -10,20 +10,20 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
-import me.scruffyboy13.ArcadesEconomy.eco.PlayerBalance;
-import me.scruffyboy13.ArcadesEconomy.utils.StringUtils;
+import me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain;
+import me.scruffyboy13.BedwarsEconomy.eco.PlayerBalance;
+import me.scruffyboy13.BedwarsEconomy.utils.StringUtils;
 
 public class BalanceTopCommand implements org.bukkit.command.CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-		if (sender.hasPermission("arcadeseconomy.command.balancetop")) {
+		if (sender.hasPermission("Bedwarseconomy.command.balancetop")) {
 			
 			if (args.length < 2) {
 				
-				if (ArcadesEconomyMain.getBalanceTopRunnable().getBalanceTop().isEmpty()) {
+				if (BedwarsEconomyMain.getBalanceTopRunnable().getBalanceTop().isEmpty()) {
 					StringUtils.sendConfigMessage(sender, "messages.top.noAccounts");
 					return true;
 				}
@@ -45,7 +45,7 @@ public class BalanceTopCommand implements org.bukkit.command.CommandExecutor {
 					return true;
 				}
 				
-				List<PlayerBalance> playerBalances = ArcadesEconomyMain.getBalanceTopRunnable().getBalanceTop();
+				List<PlayerBalance> playerBalances = BedwarsEconomyMain.getBalanceTopRunnable().getBalanceTop();
 				
 				int i = top*10;
 				int j = 0;
@@ -57,7 +57,7 @@ public class BalanceTopCommand implements org.bukkit.command.CommandExecutor {
 							StringUtils.sendConfigMessage(sender, "messages.top.message", ImmutableMap.of(
 									"%rank%", i+1-j + "",
 									"%player%", player.getName(),
-									"%balance%", ArcadesEconomyMain.format(playerBalance.getBalance()) +  ""
+									"%balance%", BedwarsEconomyMain.format(playerBalance.getBalance()) +  ""
 									));
 						}
 						else {
@@ -75,7 +75,7 @@ public class BalanceTopCommand implements org.bukkit.command.CommandExecutor {
 				
 				if (sender instanceof Player) {
 					Player player = (Player) sender;
-					if (ArcadesEconomyMain.getEco().hasAccount(player.getUniqueId())) {
+					if (BedwarsEconomyMain.getEco().hasAccount(player.getUniqueId())) {
 						PlayerBalance playerBalance = null;
 						int playerIndex = -1;
 						for (PlayerBalance pb : playerBalances) {
@@ -89,7 +89,7 @@ public class BalanceTopCommand implements org.bukkit.command.CommandExecutor {
 								StringUtils.sendConfigMessage(sender, "messages.top.self", ImmutableMap.of(
 										"%rank%", playerIndex + "",
 										"%player%", player.getName(),
-										"%balance%", ArcadesEconomyMain.format(playerBalance.getBalance()) +  ""
+										"%balance%", BedwarsEconomyMain.format(playerBalance.getBalance()) +  ""
 										));
 							}
 						}

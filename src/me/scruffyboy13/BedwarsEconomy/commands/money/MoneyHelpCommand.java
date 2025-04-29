@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.commands.money;
+package me.scruffyboy13.BedwarsEconomy.commands.money;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,15 +6,15 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import me.scruffyboy13.ArcadesEconomy.commands.CommandExecutor;
-import me.scruffyboy13.ArcadesEconomy.data.ConfigHandler;
-import me.scruffyboy13.ArcadesEconomy.utils.StringUtils;
+import me.scruffyboy13.BedwarsEconomy.commands.CommandExecutor;
+import me.scruffyboy13.BedwarsEconomy.data.ConfigHandler;
+import me.scruffyboy13.BedwarsEconomy.utils.StringUtils;
 
 public class MoneyHelpCommand extends CommandExecutor {
 
 	public MoneyHelpCommand() {
 		this.setName("help");
-		this.setPermission("arcadeseconomy.command.help");
+		this.setPermission("Bedwarseconomy.command.help");
 		this.setUsage(ConfigHandler.getMessage("money.help.usage"));
 		this.setPlayer(true);
 		this.setConsole(false);

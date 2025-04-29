@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.utils;
+package me.scruffyboy13.BedwarsEconomy.utils;
 
 import java.util.List;
 import java.util.Map;
@@ -9,12 +9,12 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.ImmutableMap;
 
-import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
+import me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain;
 
 public class StringUtils {
 
 	private static String getPrefix() {
-		return color(ArcadesEconomyMain.getInstance().getConfig().getString("messages.prefix"));
+		return color(BedwarsEconomyMain.getInstance().getConfig().getString("messages.prefix"));
 	}
 
 	public static String color(String msg) {
@@ -56,21 +56,21 @@ public class StringUtils {
 	}
 	
 	public static void sendConfigMessage(CommandSender sender, String path) {
-		for (String line : ArcadesEconomyMain.getInstance().getConfig().getStringList(path)) {
+		for (String line : BedwarsEconomyMain.getInstance().getConfig().getStringList(path)) {
 			line = line.replace("%prefix%", getPrefix());
 			sender.sendMessage(color(line));
 		}
 	}
 	
 	public static void sendConfigMessage(Player player, String path) {
-		for (String line : ArcadesEconomyMain.getInstance().getConfig().getStringList(path)) {
+		for (String line : BedwarsEconomyMain.getInstance().getConfig().getStringList(path)) {
 			line = line.replace("%prefix%", getPrefix());
 			player.sendMessage(color(line));
 		}
 	}
 
 	public static void sendConfigMessage(Player player, String path, ImmutableMap<String, String> placeholders) {
-		for (String line : ArcadesEconomyMain.getInstance().getConfig().getStringList(path)) {
+		for (String line : BedwarsEconomyMain.getInstance().getConfig().getStringList(path)) {
 			line = line.replace("%prefix%", getPrefix());
 			for (Map.Entry<String, String> placeholder : placeholders.entrySet()) {
 				line = line.replace(placeholder.getKey(), placeholder.getValue());
@@ -80,7 +80,7 @@ public class StringUtils {
 	}
 
 	public static void sendConfigMessage(CommandSender sender, String path, ImmutableMap<String, String> placeholders) {
-		for (String line : ArcadesEconomyMain.getInstance().getConfig().getStringList(path)) {
+		for (String line : BedwarsEconomyMain.getInstance().getConfig().getStringList(path)) {
 			line = line.replace("%prefix%", getPrefix());
 			for (Map.Entry<String, String> placeholder : placeholders.entrySet()) {
 				line = line.replace(placeholder.getKey(), placeholder.getValue());

@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.eco;
+package me.scruffyboy13.BedwarsEconomy.eco;
 
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -12,9 +12,9 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 
-import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
-import me.scruffyboy13.ArcadesEconomy.data.ConfigHandler;
-import me.scruffyboy13.ArcadesEconomy.data.MySQL;
+import me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain;
+import me.scruffyboy13.BedwarsEconomy.data.ConfigHandler;
+import me.scruffyboy13.BedwarsEconomy.data.MySQL;
 
 public class SQLEconomy implements Economy {
 	
@@ -36,25 +36,25 @@ public class SQLEconomy implements Economy {
 			try {
 				Statement statement = sql.getConnection().createStatement();
 				DatabaseMetaData md = sql.getConnection().getMetaData();
-				statement.execute("CREATE TABLE IF NOT EXISTS ArcadesEconomy (UUID VARCHAR(36) NOT NULL);");
-				for (Map.Entry<String, String> column : ArcadesEconomyMain.getSQLColumns().entrySet()) {
-					if (!md.getColumns(null, null, "ArcadesEconomy", column.getKey()).next()) {
-						statement.execute("ALTER TABLE ArcadesEconomy ADD " + column.getKey() + " " + column.getValue() + ";");
+				statement.execute("CREATE TABLE IF NOT EXISTS BedwarsEconomy (UUID VARCHAR(36) NOT NULL);");
+				for (Map.Entry<String, String> column : BedwarsEconomyMain.getSQLColumns().entrySet()) {
+					if (!md.getColumns(null, null, "BedwarsEconomy", column.getKey()).next()) {
+						statement.execute("ALTER TABLE BedwarsEconomy ADD " + column.getKey() + " " + column.getValue() + ";");
 					}
 				}
 				statement.close();
 			} catch (SQLException e) {
-				ArcadesEconomyMain.disable("There was an error with creating the database table.");
+				BedwarsEconomyMain.disable("There was an error with creating the database table.");
 				return;
 			}
 			
 			try {
-				PreparedStatement statement = sql.getConnection().prepareStatement("ALTER TABLE ArcadesEconomy "
-						+ "MODIFY COLUMN Balance " + ArcadesEconomyMain.getSQLColumns().get("Balance"));
+				PreparedStatement statement = sql.getConnection().prepareStatement("ALTER TABLE BedwarsEconomy "
+						+ "MODIFY COLUMN Balance " + BedwarsEconomyMain.getSQLColumns().get("Balance"));
 				statement.executeUpdate();
 				statement.close();
 			} catch (SQLException e) {
-				ArcadesEconomyMain.disable("There was an error updating the sql balance from 1dp to 2dp.");
+				BedwarsEconomyMain.disable("There was an error updating the sql balance from 1dp to 2dp.");
 				return;
 			}
 		
@@ -65,16 +65,16 @@ public class SQLEconomy implements Economy {
 	private void connectToSQL() {
 		try {
 			sql.connect();
-            ArcadesEconomyMain.warn("Successfully connected to mysql database.");
+            BedwarsEconomyMain.warn("Successfully connected to mysql database.");
         } 
         catch (SQLException e) {
-        	ArcadesEconomyMain.warn("There was an error connecting to the database. " + e.getMessage());
-            Bukkit.getPluginManager().disablePlugin(ArcadesEconomyMain.getInstance());
+        	BedwarsEconomyMain.warn("There was an error connecting to the database. " + e.getMessage());
+            Bukkit.getPluginManager().disablePlugin(BedwarsEconomyMain.getInstance());
             return;
         }
         catch (ClassNotFoundException e) {
-        	ArcadesEconomyMain.getInstance().getLogger().warning("The MySQL driver class could not be found.");
-        	Bukkit.getPluginManager().disablePlugin(ArcadesEconomyMain.getInstance());
+        	BedwarsEconomyMain.getInstance().getLogger().warning("The MySQL driver class could not be found.");
+        	Bukkit.getPluginManager().disablePlugin(BedwarsEconomyMain.getInstance());
         	return;
         }
 	}
@@ -83,14 +83,14 @@ public class SQLEconomy implements Economy {
 	public boolean createAccount(UUID uuid) {
 		PlayerBalance playerBalance = new PlayerBalance(uuid, ConfigHandler.getStartingBalance());
 		try {
-			PreparedStatement statement = sql.getConnection().prepareStatement("INSERT INTO ArcadesEconomy "
+			PreparedStatement statement = sql.getConnection().prepareStatement("INSERT INTO BedwarsEconomy "
 					+ "(UUID, Balance) VALUES (?, ?);");
 			statement.setString(1, playerBalance.getUUID().toString());
 			statement.setDouble(2, playerBalance.getBalance());
 			statement.executeUpdate();
 			statement.close();
 		} catch (SQLException e) {
-			ArcadesEconomyMain.warn(e.getMessage());
+			BedwarsEconomyMain.warn(e.getMessage());
 			return false;
 		}
 		return true;
@@ -109,13 +109,13 @@ public class SQLEconomy implements Economy {
 	@Override
 	public boolean delete(UUID uuid) {
 		try {
-			PreparedStatement statement = sql.getConnection().prepareStatement("DELETE FROM ArcadesEconomy "
+			PreparedStatement statement = sql.getConnection().prepareStatement("DELETE FROM BedwarsEconomy "
 					+ "WHERE UUID=?");
 			statement.setString(1, uuid.toString());
 			statement.executeUpdate();
 			statement.close();
 		} catch(SQLException e) {
-			ArcadesEconomyMain.warn(e.getMessage());
+			BedwarsEconomyMain.warn(e.getMessage());
 			return false;
 		}
 		return true;
@@ -136,7 +136,7 @@ public class SQLEconomy implements Economy {
 		if (amount < 0)
 			return false;
 		try {
-			PreparedStatement statement = sql.getConnection().prepareStatement("UPDATE ArcadesEconomy SET "
+			PreparedStatement statement = sql.getConnection().prepareStatement("UPDATE BedwarsEconomy SET "
 					+ "UUID=?, Balance=? WHERE UUID=?");
 			statement.setString(1, uuid.toString());
 			statement.setDouble(2, amount);
@@ -144,7 +144,7 @@ public class SQLEconomy implements Economy {
 			statement.executeUpdate();
 			statement.close();
 		} catch(SQLException e) {
-			ArcadesEconomyMain.warn(e.getMessage());
+			BedwarsEconomyMain.warn(e.getMessage());
 			return false;
 		}
 		return true;
@@ -158,7 +158,7 @@ public class SQLEconomy implements Economy {
 	@Override
 	public PlayerBalance getBalance(UUID uuid) {
 		try {
-			PreparedStatement statement = sql.getConnection().prepareStatement("SELECT * FROM ArcadesEconomy "
+			PreparedStatement statement = sql.getConnection().prepareStatement("SELECT * FROM BedwarsEconomy "
 					+ "WHERE UUID=?");
 		statement.setString(1, uuid.toString());
 		ResultSet result = statement.executeQuery();
@@ -175,7 +175,7 @@ public class SQLEconomy implements Economy {
 		try {
 			List<PlayerBalance> playerData = new ArrayList<PlayerBalance>();
 			Statement statement = sql.getConnection().createStatement();
-			ResultSet result = statement.executeQuery("SELECT * FROM ArcadesEconomy;");
+			ResultSet result = statement.executeQuery("SELECT * FROM BedwarsEconomy;");
 			while (result.next()) {
 				UUID uuid = UUID.fromString(result.getString("UUID"));
 				double balance = result.getDouble("Balance");
@@ -183,7 +183,7 @@ public class SQLEconomy implements Economy {
 			}
 			return playerData;
 		} catch (SQLException e) {
-			ArcadesEconomyMain.warn(e.getMessage());
+			BedwarsEconomyMain.warn(e.getMessage());
 			return null;
 		}
 	}

@@ -1,4 +1,4 @@
-package me.scruffyboy13.ArcadesEconomy.eco;
+package me.scruffyboy13.BedwarsEconomy.eco;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -8,8 +8,8 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
-import me.scruffyboy13.ArcadesEconomy.ArcadesEconomyMain;
-import me.scruffyboy13.ArcadesEconomy.data.ConfigHandler;
+import me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain;
+import me.scruffyboy13.BedwarsEconomy.data.ConfigHandler;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
 
@@ -17,7 +17,7 @@ public class VaultImpl implements net.milkbowl.vault.economy.Economy {
 
 	@Override
 	public boolean isEnabled() {
-		return ArcadesEconomyMain.getInstance() != null;
+		return BedwarsEconomyMain.getInstance() != null;
 	}
 	
 	@Override
@@ -65,7 +65,7 @@ public class VaultImpl implements net.milkbowl.vault.economy.Economy {
 	}
 	
 	private boolean createAccount(UUID uuid) {
-		return ArcadesEconomyMain.getEco().createAccount(uuid);
+		return BedwarsEconomyMain.getEco().createAccount(uuid);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -91,7 +91,7 @@ public class VaultImpl implements net.milkbowl.vault.economy.Economy {
 	}
 	
 	private EconomyResponse deposit(UUID uuid, double amount) {
-		if (!ArcadesEconomyMain.getEco().deposit(uuid, amount)) {
+		if (!BedwarsEconomyMain.getEco().deposit(uuid, amount)) {
 			return new EconomyResponse(0, 0, ResponseType.FAILURE, "Failed to deposit funds.");
 		}
 		return new EconomyResponse(amount, getBalance(uuid), ResponseType.SUCCESS, "");
@@ -120,12 +120,12 @@ public class VaultImpl implements net.milkbowl.vault.economy.Economy {
 	}
 	
 	private double getBalance(UUID uuid) {
-		return ArcadesEconomyMain.getEco().getBalance(uuid).getBalance();
+		return BedwarsEconomyMain.getEco().getBalance(uuid).getBalance();
 	}
 
 	@Override
 	public String getName() {
-		return "ArcadesEconomy";
+		return "BedwarsEconomy";
 	}
 
 	@SuppressWarnings("deprecation")
@@ -151,7 +151,7 @@ public class VaultImpl implements net.milkbowl.vault.economy.Economy {
 	}
 	
 	private boolean has(UUID uuid, double amount) {
-		return ArcadesEconomyMain.getEco().has(uuid, amount);
+		return BedwarsEconomyMain.getEco().has(uuid, amount);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -177,7 +177,7 @@ public class VaultImpl implements net.milkbowl.vault.economy.Economy {
 	}
 	
 	private boolean hasAccount(UUID uuid) {
-		return ArcadesEconomyMain.getEco().hasAccount(uuid);
+		return BedwarsEconomyMain.getEco().hasAccount(uuid);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -203,7 +203,7 @@ public class VaultImpl implements net.milkbowl.vault.economy.Economy {
 	}
 	
 	private EconomyResponse withdraw(UUID uuid, double amount) {
-		if (!ArcadesEconomyMain.getEco().withdraw(uuid, amount)) {
+		if (!BedwarsEconomyMain.getEco().withdraw(uuid, amount)) {
 			return new EconomyResponse(0, 0, ResponseType.FAILURE, "Failed to withdraw funds.");
 		}
 		return new EconomyResponse(amount, getBalance(uuid), ResponseType.SUCCESS, "");
