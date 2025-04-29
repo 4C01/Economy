@@ -1,0 +1,35 @@
+name: BedwarsEconomy
+main: me.scruffyboy13.BedwarsEconomy.BedwarsEconomyMain
+version: 2.3
+api-version: 1.13
+author: scruffyboy13
+depend: [Vault]
+load: STARTUP
+
+commands:
+  Bedwarscoin:
+    aliases: [Bedwarsc]
+  Bedwarsbalance:
+    aliases: [Bedwarsbal]
+  Bedwarsbalancetop:
+    aliases: [Bedwarsbaltop]
+  Bedwarspay:
+    aliases: []
+
+permissions:
+  Bedwarseconomy.command.balance:
+    default: true
+  Bedwarseconomy.command.balancetop:
+    default: true
+  Bedwarseconomy.command.help:
+    default: true
+  Bedwarseconomy.command.pay:
+    default: op
+  Bedwarseconomy.command.give:
+    default: op
+  Bedwarseconomy.command.take:
+    default: op
+  Bedwarseconomy.command.set:
+    default: op
+  Bedwarseconomy.command.reload:
+    default: op

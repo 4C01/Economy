@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BedwarsEconomy:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BedwarsEconomy_jar</output-path>
+    <root id="archive" name="BedwarsEconomy.jar">
+      <element id="file-copy" path="$PROJECT_DIR$/src/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/config.yml" />
+      <element id="module-output" name="ArcadesEconomy" />
+    </root>
+  </artifact>
+</component>
